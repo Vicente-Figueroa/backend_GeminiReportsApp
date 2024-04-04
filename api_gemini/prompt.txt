@@ -1,0 +1,5 @@
+Hola gemini, este es una prueba de concepto.
+Quiero que analices mis ingresos en el año que son estos =  {{ingresos}}.
+Tambien mis gastos en el año que son estos {{gastos}}. 
+Dime que tal mi situacion financiera actual en 100 palabras.
+Todo esto es en pesos chilenos y durante el mes de marzo.

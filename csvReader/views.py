@@ -15,12 +15,17 @@ class ImportCSVView(APIView):
         
         # sacar el account name para las variables
         account_names = data['account'].unique().tolist()
-
+        #borrar los antiguos datos de account
+        Account.objects.all().delete()
         for name in account_names:
             to_insert = {'name':name}
             object_model = Account.objects.get_or_create(**to_insert)
 
         # Sacar la transaccion
+
+        #borrar los antiguos datos de transaccion
+        Transaction.objects.all().delete()
+
         datos_modelo = data.to_dict(orient="records")
 
         for datos in datos_modelo:

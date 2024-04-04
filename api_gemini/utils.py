@@ -15,16 +15,17 @@ def get_data():
     gastos = transacciones_gastos.aggregate(total_gastos=Sum('amount'))['total_gastos']
     return ingresos, gastos
 
+from jinja2 import Template
 
 def call_gemini():
     genai.configure(api_key='AIzaSyBSbC28LHaIpkVg7mrNc5FI3jx6-aWCH70')
 
     model = genai.GenerativeModel('gemini-pro')
     ingresos, gastos = get_data()
-    message = f"""Hola gemini, este es una prueba de concepto.
-     Quiero que analices mis ingresos en el año que son estos =  {ingresos}
-     y tambien mis gastos en el año que son estos{gastos}. Dime que tal mi situacion financiera actual"""
 
+    template = Template(open('./api_gemini/prompt.txt').read())
+
+    message = template.render(gastos = gastos, ingresos = ingresos)
 
     response = model.generate_content(message)
     return response.text
