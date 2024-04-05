@@ -1,0 +1,39 @@
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# Virtual environment
+venv/
+env/
+.python-version
+
+# Built files
+*.pyc
+__pycache__/
+
+# Test coverage (optional)
+.coverage
+
+# Local documentation
+docs/build/
+
+# IDE and OS specific files
+Thumbs.db
+.DS_Store
+*.vscode/
+local_settings.py
+
+# Temporary scratch files
+*.log
+*.pot
+.buildozer/
+
+# Database files
+db.sqlite3  # Replace with your actual database filename
+
+# Static files (if using a custom static directory)
+static/
+
+*.pyc
