@@ -1,5 +1,15 @@
 Hola gemini, este es una prueba de concepto.
-Quiero que analices mis ingresos en el año que son estos =  {{ingresos}}.
-Tambien mis gastos en el año que son estos {{gastos}}. 
-Dime que tal mi situacion financiera actual en 50 palabras.
+Quiero que analices mis ingresos en el mes que son estos =  {{ingresos}}.
+Tambien mis gastos en el mes que son estos {{gastos}}. 
+Dime que tal mi situacion financiera actual en formato htlm bien bonito
+para presentar en mi pagina de angular, no lo hagas dentro de una etiqueta html si no dentro de un div
 Todo esto es en pesos chilenos y durante el mes de marzo.
+
+Consideraciones: No me des el monto mis ingresos ni de mis gastos por que eso ya me lo se.
+Añade un consejo.
+Que el texto no sea de mas de 500 palabras en total.
+esto es para una aplicación financiera.
+
+Eso mas que nada. Se que eres inteligente y me daras un mensaje bonito, estiloso y profesional
+para mostrar en mi pagina
+Recuerda tiene que ser formato HTML pero estar contenido en un div, es muy importante

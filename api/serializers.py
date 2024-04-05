@@ -2,9 +2,13 @@ from api_gemini.models import Account, Transaction
 from rest_framework import serializers
 
 class AccountSerializer(serializers.ModelSerializer):
+    total_transactions  = serializers.SerializerMethodField()
+
+    def get_total_transactions(self, model):
+        return model.total_transactions
     class Meta:
         model = Account
-        fields = "__all__"
+        fields = ['name', 'total_transactions']
 
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:

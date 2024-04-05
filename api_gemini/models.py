@@ -8,6 +8,12 @@ class Account(models.Model):
 
     def __str__(self):
         return self.name
+    
+    @property
+    def total_transactions(self):
+        qs = self.transactions.all().aggregate(total=models.Sum('amount'))
+        return qs['total']
+
 
 class Transaction(models.Model):
     typeChoices = [
@@ -17,7 +23,7 @@ class Transaction(models.Model):
     date = models.DateField()
     amount=models.IntegerField()
     type = models.CharField(max_length=255, choices=typeChoices)
-    account = models.ForeignKey('Account', on_delete=models.CASCADE)
+    account = models.ForeignKey('Account',related_name='transactions', on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.id) + self.account.name + str(self.amount) + self.type

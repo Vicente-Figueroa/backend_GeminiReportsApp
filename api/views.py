@@ -1,10 +1,10 @@
 from rest_framework import viewsets
 from api_gemini.models import Account, Transaction
 from api.serializers import AccountSerializer, TransactionSerializer
-from django.db.models import Sum
 from django_filters.rest_framework import DateFilter
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from api.utils import get_summary
 
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.all()
@@ -31,12 +31,5 @@ class TransactionViewSet(viewsets.ModelViewSet):
 
 @api_view(["GET"])
 def Profit(request):
-    incomes = Transaction.objects.filter(type='Ingresos').aggregate(Sum('amount'))['amount__sum'] or 0
-    excomes = Transaction.objects.filter(type='Gastos').aggregate(Sum('amount'))['amount__sum'] or 0
-    profit = incomes + excomes
-    response = {
-        'expenses': excomes,
-        'incomes': incomes,
-        'profit': profit
-    }
+    response = get_summary()
     return Response(response)
