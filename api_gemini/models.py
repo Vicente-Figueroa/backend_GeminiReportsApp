@@ -14,7 +14,7 @@ class Transaction(models.Model):
         ('Gasto','Gasto'),
         ('Ingreso','Ingreso')
     ]
-
+    date = models.DateField()
     amount=models.IntegerField()
     type = models.CharField(max_length=255, choices=typeChoices)
     account = models.ForeignKey('Account', on_delete=models.CASCADE)

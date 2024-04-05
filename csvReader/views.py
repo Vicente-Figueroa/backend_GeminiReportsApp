@@ -26,6 +26,9 @@ class ImportCSVView(APIView):
         #borrar los antiguos datos de transaccion
         Transaction.objects.all().delete()
 
+        data['date'] = pd.to_datetime(data['date'])
+        data['date'] = data['date'].dt.date
+
         datos_modelo = data.to_dict(orient="records")
 
         for datos in datos_modelo:
@@ -34,6 +37,7 @@ class ImportCSVView(APIView):
 
             # Crear un nuevo objeto en el modelo.
             modelo = Transaction(
+                date = datos['date'],
                 account=cuenta,
                 amount=datos["amount"],
                 type=datos["type"],

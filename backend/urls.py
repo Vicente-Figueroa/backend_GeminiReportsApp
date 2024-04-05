@@ -16,7 +16,7 @@ router.register(r'csv-file', ImportCSVView, basename='csv-view')
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('gemini', MyView.as_view(), name="gemini"),
+    path('gemini/', MyView.as_view(), name="gemini"),
     path('admin', admin.site.urls, name="admin"),
     path('csv-file',ImportCSVView.as_view(), name="csv-file"),
     path('api/',include(urls))
