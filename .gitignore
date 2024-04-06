@@ -36,4 +36,6 @@ db.sqlite3  # Replace with your actual database filename
 # Static files (if using a custom static directory)
 static/
 
-*.pyc
+api_gemini/migrations/
+
+*.sqlite3

@@ -1,5 +1,6 @@
 from api_gemini.models import Account, Transaction
 from rest_framework import serializers
+from api_gemini.choices import envelopedIdChoices
 
 class AccountSerializer(serializers.ModelSerializer):
     total_transactions  = serializers.SerializerMethodField()
@@ -11,6 +12,8 @@ class AccountSerializer(serializers.ModelSerializer):
         fields = ['name', 'total_transactions']
 
 class TransactionSerializer(serializers.ModelSerializer):
+    
+    envelope_id = serializers.CharField(source='get_envelope_id_display')
     class Meta:
         model = Transaction
         fields = "__all__"

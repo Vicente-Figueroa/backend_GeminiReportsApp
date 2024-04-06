@@ -8,11 +8,11 @@ Obtener una evaluación financiera completa en formato HTML, contenida dentro de
 
 Información financiera:
 
-Fecha: Desde inicio de este año 2024.
+Periodo: {{periodo}}
 Moneda: Pesos chilenos.
 Ingresos: {{ingresos}}.
 Gastos: {{gastos}}.
-Fecha: Desde inicio de este año 2024.
+Periodo: {{periodo}}
 
 Requisitos:
 
