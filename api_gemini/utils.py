@@ -23,7 +23,7 @@ def call_gemini():
     model = genai.GenerativeModel('gemini-pro')
     ingresos, gastos = get_data()
 
-    template = Template(open('./api_gemini/prompt.txt').read())
+    template = Template(open('./api_gemini/prompts/general_prompt.txt').read())
 
     message = template.render(gastos = gastos, ingresos = ingresos)
 

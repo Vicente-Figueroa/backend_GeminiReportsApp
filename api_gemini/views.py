@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .utils import call_gemini 
 
-class MyView(APIView):
+class GeneralView(APIView):
     """
     Esta vista simple recibe un mensaje y devuelve otro.
     """
