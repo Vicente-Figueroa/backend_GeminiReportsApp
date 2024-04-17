@@ -6,6 +6,7 @@ from django.contrib import admin
 from api_gemini.views import MyView
 from csvReader.views import ImportCSVView
 from api import urls
+from regresion import urls as urls_regresion
 
 router = routers.DefaultRouter()
 router.register(r'gemini', MyView, basename='my-view')
@@ -19,5 +20,6 @@ urlpatterns = [
     path('gemini/', MyView.as_view(), name="gemini"),
     path('admin', admin.site.urls, name="admin"),
     path('csv-file',ImportCSVView.as_view(), name="csv-file"),
-    path('api/',include(urls))
+    path('api/',include(urls)),
+    path('regresion/',include(urls_regresion))
 ]
