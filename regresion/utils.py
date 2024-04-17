@@ -8,13 +8,26 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 import pickle
 from datetime import date
+from datetime import timedelta
 
-def convertir_a_dataframe(modelo):
+def convertir_a_dataframe(modelo, range ):
     # Obtiene los objetos del modelo
-
-    # Obtiene la fecha actual
     fecha_actual = date.today()
-    objetos = modelo.objects.filter(date__year=2024)
+
+    if range == 'month':
+        objetos = modelo.objects.filter(date__month=fecha_actual.month,date__year=fecha_actual.year )
+        print(objetos.count(),fecha_actual.month )
+    if range == 'year':
+        objetos = modelo.objects.filter(date__year=fecha_actual.year )
+        print(objetos.count(),fecha_actual.month )
+    if range == '30days':
+        fecha_hace_30_dias = fecha_actual - timedelta(days=30)
+        objetos = modelo.objects.filter(date__gte=fecha_hace_30_dias, date__lte=fecha_actual)
+
+    else:
+        # Obtiene la fecha actual
+        objetos = modelo.objects.all()
+        print(objetos.count())
 
     # Crea una lista vacía para almacenar los datos
     datos = []
@@ -40,8 +53,8 @@ def convertir_a_dataframe(modelo):
     return df
 
 
-def transformar_data():
-    transacciones = convertir_a_dataframe(Transaction)
+def transformar_data(range):
+    transacciones = convertir_a_dataframe(Transaction, range )
 
     # Transforma fecha a formato DateTime y extrae solo la fecha
     transacciones['date'] = pd.to_datetime(transacciones['date']).dt.date
@@ -50,8 +63,8 @@ def transformar_data():
     transacciones_filtradas = transacciones[transacciones['type'] == 'Gastos']
 
     # Cálculo de z-scores y detección de outliers
-    zscores = np.abs(transacciones_filtradas['amount'] - transacciones_filtradas['amount'].mean()) / transacciones_filtradas['amount'].std()
-    transacciones_filtradas = transacciones_filtradas[zscores <= 3]  # Umbral de 3 desviaciones estándar
+    #zscores = np.abs(transacciones_filtradas['amount'] - transacciones_filtradas['amount'].mean()) / transacciones_filtradas['amount'].std()
+    #transacciones_filtradas = transacciones_filtradas[zscores <= 3]  # Umbral de 3 desviaciones estándar
 
     # Ordena por fecha y calcula monto acumulado
     transacciones_filtradas = transacciones_filtradas.sort_values(by='date')
@@ -75,8 +88,8 @@ def transformar_data():
 
 
 
-def fit_model():
-    transacciones_por_dia_acumulado = transformar_data()
+def fit_model(range):
+    transacciones_por_dia_acumulado = transformar_data(range )
     # Convertir la fecha a formato adecuado para la regresiónfrom sklearn.model_selection import train_test_split
     X = transacciones_por_dia_acumulado[['date_num']]
     y = transacciones_por_dia_acumulado['sum_amount']
@@ -93,14 +106,14 @@ def fit_model():
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
 
-    with open('regresion/modelos/modelo_entrenado.pkl', 'wb') as f:
+    with open(f'regresion/modelos/{range}/modelo_entrenado.pkl', 'wb') as f:
         pickle.dump(model, f)
     # Guarda el scaler de X con pickle
-    with open('regresion/modelos/scaler_x.pkl', 'wb') as f:
+    with open(f'regresion/modelos/{range}/scaler_x.pkl', 'wb') as f:
         pickle.dump(scaler_X, f)
 
     # Guarda el scaler de Y con pickle
-    with open('regresion/modelos/scaler_y.pkl', 'wb') as f:
+    with open(f'regresion/modelos/{range}/scaler_y.pkl', 'wb') as f:
         pickle.dump(scaler_y, f)
 
     return {
@@ -109,7 +122,7 @@ def fit_model():
         "Coeficiente de determinación (R²):" : r2
     }
 
-def predict_model():
+def predict_model(period = 'all'):
     # Definición de datos originales
     data = {"fecha": pd.to_datetime(["17/04/2024", "18/04/2024", "19/04/2024"], format="%d/%m/%Y")}
     fechas_originales = pd.DataFrame(data)
@@ -124,14 +137,14 @@ def predict_model():
     data_ampliada = {"fecha": rango_fechas}
     fechas_extendidas = pd.DataFrame(data_ampliada)
     # Carga el scaler de X con pickle
-    with open('regresion/modelos/scaler_x.pkl', 'rb') as f:
+    with open(f'regresion/modelos/{period}/scaler_x.pkl', 'rb') as f:
         scaler_x_cargado = pickle.load(f)
 
     # Carga el scaler de Y con pickle
-    with open('regresion/modelos/scaler_y.pkl', 'rb') as f:
+    with open(f'regresion/modelos/{period}/scaler_y.pkl', 'rb') as f:
         scaler_y_cargado = pickle.load(f)
     # Carga el modelo entrenado con pickle
-    with open('regresion/modelos/modelo_entrenado.pkl', 'rb') as f:
+    with open(f'regresion/modelos/{period}/modelo_entrenado.pkl', 'rb') as f:
         modelo_cargado = pickle.load(f)
 
     fechas_futuras = pd.DataFrame(fechas_extendidas)  # Ajustar fechas# Preparar datos de fechas para predicciones
