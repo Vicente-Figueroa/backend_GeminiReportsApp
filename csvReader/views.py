@@ -12,7 +12,9 @@ class ImportCSVView(APIView):
         csv_file = request.FILES['csv_file']
 
         data = pd.read_csv(csv_file, delimiter=';')
-        
+        data.loc[data["category"] == 'TRANSFER', "type"] = "Transferencia"
+        data.loc[data["category"] == 'TRANSFER', "envelope_id"] = 100110
+
         # sacar el account name para las variables
         account_names = data['account'].unique().tolist()
         #borrar los antiguos datos de account
@@ -41,6 +43,7 @@ class ImportCSVView(APIView):
                 account=cuenta,
                 amount=datos["amount"],
                 type=datos["type"],
+                envelope_id=datos["envelope_id"],
             )
 
             # Guardar el objeto del modelo.

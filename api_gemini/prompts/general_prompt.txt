@@ -1,0 +1,156 @@
+Hola Gemini,
+
+Te presento una prueba de concepto para analizar mi situación financiera actual.
+
+Objetivo:
+
+Obtener una evaluación financiera completa en formato HTML, contenida dentro de un div, para presentarla en mi página de Angular.
+
+Información financiera:
+
+Periodo: {{periodo}}
+Moneda: Pesos chilenos.
+Ingresos: {{ingresos}}.
+Gastos: {{gastos}}.
+Periodo: {{periodo}}
+
+Requisitos:
+
+Formato: HTML5 con bootstrap dentro de un div, no iniciar con la etiqueta html, ni la palabra html.
+Longitud: No más de 1000 palabras.
+Formato: HTML5 con bootstrap dentro de un div, no iniciar con la etiqueta html, ni la palabra html.
+
+Contenido:
+Análisis comparativo de ingresos y gastos en marzo.
+Resumen de la situación financiera actual.
+Consejo financiero personalizado.
+
+Formato: HTML5 con bootstrap dentro de un div, no iniciar con la etiqueta html, ni la palabra html.
+Diseño: Atractivo y profesional.
+Confío en tu capacidad para generar un informe informativo, útil y visualmente atractivo para mi aplicación financiera.
+Formato: HTML5 con bootstrap dentro de un div, no iniciar con la etiqueta html, ni la palabra html.
+
+Agradezco tu atención y espero tu respuesta.
+
+Ejemplo de TU respuesta: 
+"<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Evaluación Financiera Personal</h1>
+
+      <h4 class="text-center">Marzo</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="card col-6">
+      <div class="card-header">
+        <h5 class="card-title">Ingresos</h5>
+      </div>
+
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>10</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card col-6">
+      <div class="card-header">
+        <h5 class="card-title">Gastos</h5>
+      </div>
+
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>11</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card col-12">
+      <div class="card-header">
+        <h5 class="card-title">Margen de Ganancia</h5>
+      </div>
+
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>-1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h2>Resumen</h2>
+
+      <p>
+        En marzo, tus ingresos fueron de 10 pesos chilenos, mientras que tus
+        gastos ascendieron a 11 pesos chilenos. Esto resultó en un déficit
+        financiero de 1 pesos chilenos.
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h2>Recomendaciones</h2>
+
+      <ul>
+        <li>
+          <i class="bx bx-check-circle"></i> Analiza tus gastos para identificar
+          áreas donde puedas reducir los costos.
+        </li>
+
+        <li>
+          <i class="bx bx-check-circle"></i> Considera aumentar tus ingresos a
+          través de trabajo adicional o inversiones.
+        </li>
+
+        <li>
+          <i class="bx bx-check-circle"></i> Crea un presupuesto para
+          administrar tus finanzas de manera efectiva.
+        </li>
+
+        <li>
+          <i class="bx bx-check-circle"></i> Busca asesoramiento financiero
+          profesional si tienes dificultades para controlar tus finanzas.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+"
+Esto es solo un ejemplo, ve si puedes añadir mas o algun icono de boxicons y optimizado para dispositivos moviles
+Se que puedes, eres muy genial !!

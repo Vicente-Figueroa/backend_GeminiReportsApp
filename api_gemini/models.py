@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models import Aggregate
-
+from api_gemini.choices import typeChoices,envelopedIdChoices
 # Create your models here.
 
 class Account(models.Model):
@@ -16,13 +16,11 @@ class Account(models.Model):
 
 
 class Transaction(models.Model):
-    typeChoices = [
-        ('Gasto','Gasto'),
-        ('Ingreso','Ingreso')
-    ]
+
     date = models.DateField()
     amount=models.IntegerField()
     type = models.CharField(max_length=255, choices=typeChoices)
+    envelope_id = models.IntegerField(choices=envelopedIdChoices)
     account = models.ForeignKey('Account',related_name='transactions', on_delete=models.CASCADE)
 
     def __str__(self):
