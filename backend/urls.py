@@ -3,7 +3,7 @@ from rest_framework import routers
 from django.contrib import admin
 
 from csvReader.views import ImportCSVView
-from api import urls
+from api import urls as urls_api
 from regresion import urls as urls_regresion
 from api_gemini import urls as urls_gemini
 
@@ -17,7 +17,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin', admin.site.urls, name="admin"),
     path('csv-file',ImportCSVView.as_view(), name="csv-file"),
-    path('regresion/',include(urls_regresion))
+    path('regresion/',include(urls_regresion)),
     path('api/',include(urls_api)),
     path('gemini/',include(urls_gemini))
 ]

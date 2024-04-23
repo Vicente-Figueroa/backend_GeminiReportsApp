@@ -35,7 +35,7 @@ def get_data(period):
 
 
 def call_gemini(period):
-    genai.configure(api_key='AIzaSyBSbC28LHaIpkVg7mrNc5FI3jx6-aWCH70')
+    genai.configure(api_key='AIzaSyAtQwglcD0LvJdhKcbb2KCNjHhiSAepvqQ')
     model = genai.GenerativeModel('gemini-pro')
     # get data
     ingresos, gastos = get_data(period)
